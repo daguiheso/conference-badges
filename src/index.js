@@ -6,5 +6,11 @@ import './assets/styles/app.css';
 import Badge from './components/Badges';
 
 const container = document.getElementById('app');
-
-ReactDOM.render(<Badge />, container);
+ReactDOM.render(
+  <Badge
+    name="Daniel"
+    lastName="Hernández"
+    avatar="https://gravatar.com/avatar?d=identicon"
+    jobTitle="Developer Frontend"
+    twitter="daguiheso"
+  />, container);
