@@ -1,0 +1,30 @@
+.badges__hero {
+  width: 100%;
+  padding: 2rem 0;
+  background: url('../../images/stars.svg'), #1B1B25;
+  background-repeat: repeat;
+  margin-bottom: 1rem;
+}
+
+.badges__hero > .badges__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badges__container {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.badges__conf-logo {
+  margin-bottom: 2rem;
+}
+
+.badges__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
