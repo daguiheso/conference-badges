@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import BadgesList from '../components/BadgesList';
 
@@ -57,9 +58,9 @@ const Badges = () => {
 
       <div className="badges__container">
         <div className="badges__buttons">
-          <a href="/badges/new" className="btn btn-primary">
+          <Link to="/badges/new" className="btn btn-primary">
             New Badge
-          </a>
+          </Link>
         </div>
         <BadgesList badges={data} />
       </div>
