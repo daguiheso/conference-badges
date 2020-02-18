@@ -1,40 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "../assets/styles/components/BadgeForm.css";
 
-const BadgeForm = () => {
-  const [form, setValues] = useState({
-    firstName: 'Pepe',
-    lastName: '',
-    email: '',
-    jobTitle: '',
-    twitter: ''
-  });
-
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log( form );
-  };
-
+const BadgeForm = (props) => {
+  const { onChange, onSubmit, firstName, lastName, email, jobTitle, twitter, } = props;
   return (
     <>
       <h1>New Attendant</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>First Name</label>
           <input
             className="form-control"
             type="text"
             name="firstName"
-            onChange={handleInput}
-            value={form.firstName}
+            onChange={onChange}
+            value={firstName}
           />
         </div>
         <div className="form-group">
@@ -43,8 +24,8 @@ const BadgeForm = () => {
             className="form-control"
             type="text"
             name="lastName"
-            onChange={handleInput}
-            value={form.lastName}
+            onChange={onChange}
+            value={lastName}
           />
         </div>
         <div className="form-group">
@@ -53,8 +34,8 @@ const BadgeForm = () => {
             className="form-control"
             type="email"
             name="email"
-            onChange={handleInput}
-            value={form.email}
+            onChange={onChange}
+            value={email}
           />
         </div>
         <div className="form-group">
@@ -63,8 +44,8 @@ const BadgeForm = () => {
             className="form-control"
             type="text"
             name="jobTitle"
-            onChange={handleInput}
-            value={form.jobTitle}
+            onChange={onChange}
+            value={jobTitle}
           />
         </div>
         <div className="form-group">
@@ -73,8 +54,8 @@ const BadgeForm = () => {
             className="form-control"
             type="text"
             name="twitter"
-            onChange={handleInput}
-            value={form.twitter}
+            onChange={onChange}
+            value={twitter}
           />
         </div>
         <button type="submit" className="btn btn-primary">

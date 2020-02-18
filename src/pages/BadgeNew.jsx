@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Navbar from '../components/Navbar';
 import Badge from '../components/Badge';
@@ -6,6 +6,27 @@ import BadgeForm from '../components/BadgeForm';
 import imgHeader from '../assets/images/badge-header.svg';
 
 const BadgeNew = () => {
+  const [form, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    jobTitle: '',
+    twitter: '',
+    avatar: 'https://gravatar.com/avatar?d=identicon'
+  });
+
+  const handleChange = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(form);
+  };
+
   return (
     <>
       <Navbar />
@@ -16,15 +37,19 @@ const BadgeNew = () => {
         <div className="row">
           <div className="col-6">
             <Badge
-              name="Daniel"
-              lastName="Hernández"
-              avatar="https://gravatar.com/avatar?d=identicon"
-              jobTitle="Developer Frontend"
-              twitter="daguiheso"
+              name={form.firstName}
+              lastName={form.lastName}
+              avatar={form.avatar}
+              jobTitle={form.jobTitle}
+              twitter={form.twitter}
             />
           </div>
           <div className="col-6">
-            <BadgeForm />
+            <BadgeForm
+              onSubmit={handleSubmit}
+              onChange={handleChange}
+              {...form}
+            />
           </div>
         </div>
       </div>
