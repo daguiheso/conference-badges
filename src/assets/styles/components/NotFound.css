@@ -1,0 +1,18 @@
+.notfound {
+  min-height: calc(100vh - 82px);
+  background: url("../../images/stars.svg"), #1b1b25;
+  background-repeat: repeat;
+  position: relative;
+}
+
+.notfound__title {
+  color: white;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.notfound__img {
+  position: absolute;
+  max-width: 700px;
+  width: 100%;
+}
