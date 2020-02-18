@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import BadgesList from '../components/BadgesList';
 
 import '../assets/styles/components/Badges.css';
@@ -43,7 +42,6 @@ const Badges = () => {
 
   return (
     <>
-      <Navbar />
       <div className="badges">
         <div className="badges__hero">
           <div className="badges__container">
