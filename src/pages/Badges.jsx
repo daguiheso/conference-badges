@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BadgesList from '../components/BadgesList';
+import PageLoading from '../components/PageLoading';
+import PageError from '../components/PageError';
 import api from '../api';
 
 import '../assets/styles/components/Badges.css';
@@ -31,8 +33,8 @@ const Badges = () => {
 
   const existBadges = () => badges.length > 0;
 
-  if (isLoading) return 'Loading...'
-  if (error) return `Error: ${error.message}`;
+  if (isLoading) return <PageLoading />
+  if (error) return <PageError error={error} />
   return (
     <>
       <div className="badges">
@@ -66,3 +68,4 @@ const Badges = () => {
 };
 
 export default Badges;
+
