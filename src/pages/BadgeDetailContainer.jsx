@@ -30,8 +30,16 @@ const BadgeDetailContainer = (props) => {
     setModalIsOpen(!modalIsOpen);
   }
 
-  const handleDeleteBadge = () => {
-    debugger;
+  const handleDeleteBadge = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await api.badges.remove(badgeId);
+      props.history.push('/badges');
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+    }
   }
 
   if (isLoading) return <PageLoaging />
