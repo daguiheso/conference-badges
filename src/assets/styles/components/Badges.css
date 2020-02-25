@@ -8,6 +8,7 @@
 
 .badges__hero img {
   max-height: 100px;
+  margin-bottom: 0;
 }
 
 .badges__hero > .badges__container {

@@ -1,9 +1,8 @@
 import React from "react";
-
 import "../assets/styles/components/BadgeForm.css";
 
 const BadgeForm = (props) => {
-  const { onChange, onSubmit, firstName, lastName, email, jobTitle, twitter, } = props;
+  const { onChange, onSubmit, firstName, lastName, email, jobTitle, twitter, error } = props;
   return (
     <>
       <h1>New Attendant</h1>
@@ -61,6 +60,9 @@ const BadgeForm = (props) => {
         <button type="submit" className="btn btn-primary">
           Save
         </button>
+        { error && (
+          <p className="text-danger mt-3">{error.message}</p>
+        )}
       </form>
     </>
   );

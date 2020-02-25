@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
+import PageLoading from '../components/PageLoading';
 import imgHeader from '../assets/images/platziconf-logo.svg';
+import api from '../api';
 
-const BadgeNew = () => {
+const BadgeNew = (props) => {
   const [form, setValues] = useState({
     firstName: '',
     lastName: '',
     email: '',
     jobTitle: '',
     twitter: '',
-    avatar: 'https://gravatar.com/avatar?d=identicon'
+    avatarUrl: 'https://gravatar.com/avatar?d=identicon'
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (event) => {
     setValues({
@@ -21,11 +25,22 @@ const BadgeNew = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(form);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await api.badges.create(form);
+      setIsLoading(false);
+      props.history.push('/badges');
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+    }
   };
 
+  if (isLoading) return <PageLoading />
   return (
     <>
       <div className="badges__hero d-flex align-items-center justify-content-center">
@@ -37,7 +52,6 @@ const BadgeNew = () => {
             <Badge
               name={form.firstName || 'Name'}
               lastName={form.lastName || 'LastName'}
-              avatar={form.avatar}
               jobTitle={form.jobTitle || 'JobTitle'}
               twitter={form.twitter || 'twitter'}
               email={form.email || 'Email'}
@@ -47,6 +61,7 @@ const BadgeNew = () => {
             <BadgeForm
               onSubmit={handleSubmit}
               onChange={handleChange}
+              error={error}
               {...form}
             />
           </div>
