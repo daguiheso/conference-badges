@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import imgHeader from '../assets/images/platziconf-logo.svg';
 import Badge from '../components/Badge';
+import Modal from '../components/Modal';
 
 const BadgeDetail = (props) => {
-  const { firstName, lastName, jobTitle, twitter, email, id } = props;
+  const { firstName, lastName, jobTitle, twitter, email, id, onOpenModal, modalIsOpen } = props;
   return (
     <>
       <div className="badges__hero  badges__hero--big">
@@ -40,13 +40,16 @@ const BadgeDetail = (props) => {
                 </Link>
               </li>
               <li>
-                <button className="btn-action btn btn-danger">
+                <button
+                  onClick={onOpenModal}
+                  className="btn-action btn btn-danger">
                   Remove
                 </button>
-                { ReactDOM.createPortal(
-                  <h1>Hola portal</h1>,
-                  document.getElementById('modal'))
-                }
+                <Modal
+                  isOpen={modalIsOpen}
+                  onClose={props.onCloseModal}>
+                  <h1>Children</h1>
+                </Modal>
               </li>
             </ul>
           </div>

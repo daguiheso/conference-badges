@@ -10,6 +10,7 @@ const BadgeDetailContainer = (props) => {
   const [badge, setBadge] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(null);
   useEffect(() => {
     getBadgeById();
   }, []);
@@ -25,9 +26,18 @@ const BadgeDetailContainer = (props) => {
     }
   };
 
+  const handleToggleModal = () => {
+    setModalIsOpen(!modalIsOpen);
+  }
+
   if (isLoading) return <PageLoaging />
   if (error) return <PageError error="error" />
-  return <BadgeDetail {...badge} />
+  return <BadgeDetail
+    {...badge}
+    modalIsOpen={modalIsOpen}
+    onOpenModal={handleToggleModal}
+    onCloseModal={handleToggleModal}
+  />
 }
 
 export default BadgeDetailContainer;
