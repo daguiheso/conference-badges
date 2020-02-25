@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
-import imgHeader from '../assets/images/badge-header.svg';
+import imgHeader from '../assets/images/platziconf-logo.svg';
 
 const BadgeNew = () => {
   const [form, setValues] = useState({
@@ -28,18 +28,19 @@ const BadgeNew = () => {
 
   return (
     <>
-      <div className="badges__hero">
+      <div className="badges__hero d-flex align-items-center justify-content-center">
         <img src={imgHeader} alt="hero" className="img-fluid" />
       </div>
       <div className="container">
         <div className="row">
           <div className="col-6">
             <Badge
-              name={form.firstName}
-              lastName={form.lastName}
+              name={form.firstName || 'Name'}
+              lastName={form.lastName || 'LastName'}
               avatar={form.avatar}
-              jobTitle={form.jobTitle}
-              twitter={form.twitter}
+              jobTitle={form.jobTitle || 'JobTitle'}
+              twitter={form.twitter || 'twitter'}
+              email={form.email || 'Email'}
             />
           </div>
           <div className="col-6">
