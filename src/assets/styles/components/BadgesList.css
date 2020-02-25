@@ -7,7 +7,26 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
   border-radius: 5px;
   display: flex;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem;
+  position: relative;
+}
+
+.badges-list__item .options{
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.badges-list__item .options .edit {
+  color: #7DCD40;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.badges-list__item .options .delete {
+  color: #ce5e5e;;
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .badges-list__avatar {

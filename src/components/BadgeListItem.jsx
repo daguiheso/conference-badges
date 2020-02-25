@@ -1,5 +1,7 @@
 import React from 'react';
 import Gravatar from './Gravatar';
+import { FiEdit3, FiDelete } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const BadgeListItem = (props) => {
   return (
@@ -17,6 +19,15 @@ const BadgeListItem = (props) => {
         <br />@{props.badge.twitter}
         <br />
         {props.badge.jobTitle}
+      </div>
+
+      <div className="options">
+        <Link to={`/badges/${props.badge.id}/edit`}>
+          <FiEdit3 className="edit mr-3" />
+        </Link>
+        <Link to="">
+          <FiDelete className="delete" />
+        </Link>
       </div>
     </div>
   );
