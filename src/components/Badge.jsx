@@ -12,7 +12,11 @@ const Badge = (props) => {
         <img src={confLogo} alt="Logo"/>
       </article>
       <article className="badge-conf__section-name">
-        <Gravatar className="badge-conf__avatar" email={email} />
+        <Gravatar
+          className="badge-conf__avatar"
+          email={email}
+          alt={`${name} ${lastName}`}
+        />
         <h1>{name} <br />{lastName}</h1>
       </article>
       <article className="badge-conf__section-info">

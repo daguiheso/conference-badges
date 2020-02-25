@@ -1,11 +1,12 @@
 import React from 'react';
+import Gravatar from './Gravatar';
 
 const BadgeListItem = (props) => {
   return (
     <div className="badges-list__item">
-      <img
+      <Gravatar
         className="badges-list__avatar"
-        src={props.badge.avatarUrl}
+        email={props.badge.email}
         alt={`${props.badge.firstName} ${props.badge.lastName}`}
       />
 
