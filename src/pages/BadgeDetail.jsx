@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom';
 import imgHeader from '../assets/images/platziconf-logo.svg';
 import Badge from '../components/Badge';
 import Modal from '../components/Modal';
+import DeleteBadgeModal from '../components/DeleteBadgeModal';
 
 const BadgeDetail = (props) => {
-  const { firstName, lastName, jobTitle, twitter, email, id, onOpenModal, modalIsOpen } = props;
+  const {
+    firstName,
+    lastName,
+    jobTitle,
+    twitter,
+    email,
+    id,
+    onToggleModal,
+    modalIsOpen,
+    onDeleteBadge,
+  } = props;
   return (
     <>
       <div className="badges__hero  badges__hero--big">
@@ -41,14 +52,17 @@ const BadgeDetail = (props) => {
               </li>
               <li>
                 <button
-                  onClick={onOpenModal}
+                  onClick={onToggleModal}
                   className="btn-action btn btn-danger">
                   Remove
                 </button>
                 <Modal
                   isOpen={modalIsOpen}
-                  onClose={props.onCloseModal}>
-                  <h1>Children</h1>
+                  onClose={onToggleModal}>
+                  <DeleteBadgeModal
+                    onClose={onToggleModal}
+                    onDeleteBadge={onDeleteBadge}
+                  />
                 </Modal>
               </li>
             </ul>

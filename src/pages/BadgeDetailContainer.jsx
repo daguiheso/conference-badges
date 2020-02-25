@@ -30,14 +30,20 @@ const BadgeDetailContainer = (props) => {
     setModalIsOpen(!modalIsOpen);
   }
 
+  const handleDeleteBadge = () => {
+    debugger;
+  }
+
   if (isLoading) return <PageLoaging />
   if (error) return <PageError error="error" />
-  return <BadgeDetail
-    {...badge}
-    modalIsOpen={modalIsOpen}
-    onOpenModal={handleToggleModal}
-    onCloseModal={handleToggleModal}
-  />
+  return (
+    <BadgeDetail
+      {...badge}
+      modalIsOpen={modalIsOpen}
+      onToggleModal={handleToggleModal}
+      onDeleteBadge={handleDeleteBadge}
+    />
+  );
 }
 
 export default BadgeDetailContainer;
