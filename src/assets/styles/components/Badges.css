@@ -6,6 +6,10 @@
   margin-bottom: 1rem;
 }
 
+.badges__hero img {
+  max-height: 100px;
+}
+
 .badges__hero > .badges__container {
   display: flex;
   flex-direction: column;
