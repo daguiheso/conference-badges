@@ -1,34 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import imgHeader from '../assets/images/platziconf-logo.svg';
-import api from '../api.js';
 import Badge from '../components/Badge';
-import PageLoaging from '../components/PageLoading';
-import PageError from '../components/PageError';
 
-function BadgeDetail(props) {
-  const { badgeId } = props.match.params;
-
-  const [badge, setBadge] = useState(undefined);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    getBadgeById();
-  }, []);
-
-  const getBadgeById = async () => {
-    try {
-      let result = await api.badges.read(badgeId);
-      setBadge(result);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setError(error);
-    }
-  };
-
-  if (isLoading) return <PageLoaging />
-  if (error) return <PageError error="error" />
+const BadgeDetail = (props) => {
+  const { firstName, lastName, jobTitle, twitter, email, id } = props;
   return (
     <>
       <div className="badges__hero  badges__hero--big">
@@ -37,7 +13,7 @@ function BadgeDetail(props) {
             <img src={imgHeader} alt="hero" className="img-fluid" />
           </div>
           <div className="col-6 text-left">
-            <h1 className="title">{badge.firstName} {badge.lastName}</h1>
+            <h1 className="title">{firstName} {lastName}</h1>
           </div>
         </div>
       </div>
@@ -45,11 +21,11 @@ function BadgeDetail(props) {
         <div className="row">
           <div className="col-6">
             <Badge
-              name={badge.firstName || 'Name'}
-              lastName={badge.lastName || 'LastName'}
-              jobTitle={badge.jobTitle || 'JobTitle'}
-              twitter={badge.twitter || 'twitter'}
-              email={badge.email || 'Email'}
+              name={firstName || 'Name'}
+              lastName={lastName || 'LastName'}
+              jobTitle={jobTitle || 'JobTitle'}
+              twitter={twitter || 'twitter'}
+              email={email || 'Email'}
             />
           </div>
           <div className="col-6">
@@ -58,7 +34,7 @@ function BadgeDetail(props) {
               <li className="mb-3">
                 <Link
                   className="btn-action btn btn-primary"
-                  to={`/badges/${badgeId}/edit`}>
+                  to={`/badges/${id}/edit`}>
                   Edit
                 </Link>
               </li>
@@ -72,7 +48,7 @@ function BadgeDetail(props) {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default BadgeDetail;
