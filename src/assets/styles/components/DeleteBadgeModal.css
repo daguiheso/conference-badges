@@ -1,0 +1,7 @@
+.delete-badge-modal {
+  min-height: 10rem;
+}
+
+.DeleteBadgeModal button + button {
+  margin-left: 1rem;
+}
