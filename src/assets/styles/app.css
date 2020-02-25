@@ -29,6 +29,16 @@ a.link-unstyled:hover {
   padding: 0.375rem 2rem;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.btn-action {
+  min-width: 120px;
+  border-bottom: 2px solid gray !important;
+}
+
 .btn.btn-primary {
   color: #fff;
   background-color: #7DCD40;

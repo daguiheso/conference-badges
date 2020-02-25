@@ -17,6 +17,12 @@
   bottom: 1rem;
 }
 
+.badges-list__item .options .detail {
+  color: rgb(181, 141, 255);
+  font-size: 22px;
+  cursor: pointer;
+}
+
 .badges-list__item .options .edit {
   color: #7DCD40;
   font-size: 22px;
