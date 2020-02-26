@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import BadgesListItem from '../components/BadgeListItem';
 import '../assets/styles/components/BadgesList.css';
 
-const BadgesList = (props) => {
+const useSearchBadges = (badges) => {
   const [query, setQuery] = useState('');
-  const filteredBadges = props.badges.filter(badge => {
-    return `
-      ${badge.firstName}
-      ${badge.toLowerCase}
-      ${badge.twitter}
-      ${badge.jobTitle}
-    `.toLowerCase()
-     .includes(query)
-  });
+  const [filteredBadges, setFilteredBadges] = useState(badges);
 
+  useMemo(
+    () => {
+      const result = badges.filter(badge => {
+        return `
+          ${badge.firstName}
+          ${badge.toLowerCase}
+          ${badge.twitter}
+          ${badge.jobTitle}
+        `
+          .toLowerCase()
+          .includes(query)
+      });
+      setFilteredBadges(result);
+    }, [badges, query]
+  );
+
+  return { query, setQuery, filteredBadges };
+}
+
+const BadgesList = (props) => {
+
+  const { query, setQuery, filteredBadges } = useSearchBadges(props.badges);
   const handleOnChangeQuery = (e) => {
     setQuery(e.target.value);
   };
