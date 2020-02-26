@@ -1,7 +1,7 @@
 import React from 'react';
-import Gravatar from './Gravatar';
-import { FiEdit3, FiDelete, FiInfo } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { FiEdit3, FiDelete, FiInfo } from 'react-icons/fi';
+import Gravatar from './Gravatar';
 
 const BadgeListItem = (props) => {
   return (
@@ -28,9 +28,10 @@ const BadgeListItem = (props) => {
         <Link to={`/badges/${props.badge.id}/edit`}>
           <FiEdit3 className="edit mx-3" />
         </Link>
-        <Link to="">
-          <FiDelete className="delete" />
-        </Link>
+        <FiDelete
+          onClick={() => props.onToggleModal(props.badge.id)}
+          className="delete"
+        />
       </div>
     </div>
   );

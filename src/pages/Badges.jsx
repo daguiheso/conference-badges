@@ -4,6 +4,8 @@ import BadgesList from '../components/BadgesList';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import MiniLoader from '../components/MiniLoader';
+import Modal from '../components/Modal';
+import DeleteBadgeModal from '../components/DeleteBadgeModal';
 import api from '../api';
 
 import '../assets/styles/components/Badges.css';
@@ -12,7 +14,10 @@ import confLogo from '../assets/images/badge-header.svg';
 const Badges = () => {
   const [badges, setBadges] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(null);
+  const [currentIdBadge, setCurrentIdBadge] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -38,7 +43,30 @@ const Badges = () => {
 
   const existBadges = () => badges.length > 0;
 
-  if (isLoading && !badges) return <PageLoading />
+  const handleToggleModal = () => {
+    setModalIsOpen(!modalIsOpen);
+  };
+
+  const setIdBadget = (id) => {
+    setCurrentIdBadge(id);
+    handleToggleModal();
+  };
+
+  const handleDeleteBadge = async (idBadge) => {
+    handleToggleModal();
+    setIsLoadingDelete(true);
+    setError(null);
+    try {
+      await api.badges.remove(idBadge);
+      setIsLoadingDelete(false);
+      fetchData();
+    } catch (error) {
+      setIsLoadingDelete(false);
+      setError(error);
+    }
+  }
+
+  if ((isLoading && !badges) || isLoadingDelete) return <PageLoading />
   if (error) return <PageError error={error} />
   return (
     <>
@@ -61,13 +89,25 @@ const Badges = () => {
           </Link>
         </div>
         { existBadges() ?
-          <BadgesList badges={badges} /> :
+          <BadgesList
+            badges={badges}
+            onToggleModal={setIdBadget}
+          /> :
           <h1 className="text-center">
             No hay badges disponibles
           </h1>
         }
         { isLoading && <MiniLoader /> }
       </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onClose={handleToggleModal}>
+        <DeleteBadgeModal
+          onClose={handleToggleModal}
+          onDeleteBadge={() => handleDeleteBadge(currentIdBadge)}
+        />
+      </Modal>
     </>
   );
 };

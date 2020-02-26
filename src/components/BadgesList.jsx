@@ -9,7 +9,10 @@ const BadgesList = (props) => {
         { props.badges.map((badge) => {
           return (
             <li key={badge.id}>
-              <BadgesListItem badge={badge} />
+              <BadgesListItem
+                badge={badge}
+                onToggleModal={props.onToggleModal}
+              />
             </li>
           )
         })}
